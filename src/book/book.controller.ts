@@ -1,7 +1,12 @@
-import { Controller, Get, Param, Post, Body, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, Query } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './entities/book.entity';
-import { CreateBookDto, UpdateBookDto } from './dto/book.dto';
+import { CreateBookDto} from './dto/createBook.dto';
+import { UpdateBookDto } from './dto/updateBook.dto';
+import { CreateMultipleBooksDto } from './dto/creatMultipleBook.dto';
+import { SortBooksDto } from './dto/sort.dto';
+import { GetBooksByPriceDto } from './dto/getBookByPrice.dto';
+import { GetBooksByIdsDto } from './dto/getBookById.dto';
 
 
 
@@ -9,10 +14,10 @@ import { CreateBookDto, UpdateBookDto } from './dto/book.dto';
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
-  @Get()
-  findAll(): Promise<Book[]> {
-    return this.bookService.findAll();
-  }
+  // @Get()
+  // findAll(): Promise<Book[]> {
+  //   return this.bookService.findAll();
+  // }
 
   @Get(':id')
   findById(@Param('id') id: number): Promise<Book | undefined> {
@@ -33,4 +38,28 @@ export class BookController {
   delete(@Param('id') id: number): Promise<void> {
     return this.bookService.delete(id);
   }
+
+  @Post('multiple')
+  createMultiple(@Body() createMultipleBooksDto: CreateMultipleBooksDto): Promise<Book[]> {
+    return this.bookService.createMultiple(createMultipleBooksDto);
+  }
+
+  @Get()
+ findAll(@Query() sortBooksDto: SortBooksDto): Promise<Book[]> {
+    const { sortBy, sortOrder} = sortBooksDto
+    return this.bookService.findAllSortedBy(sortBy, sortOrder);
+  }
+
+  @Get('by-price')
+  getBooksByPrice(@Query() getBooksByPriceDto: GetBooksByPriceDto): Promise<string[]> {
+    const { threshold } = getBooksByPriceDto;
+    return this.bookService.getBooksByPrice(threshold);
+  }
+
+  @Get('by-ids')
+  getBooksByIds(@Query() getBooksByIdsDto: GetBooksByIdsDto): Promise<Book[]> {
+    const { bookIds } = getBooksByIdsDto;
+    return this.bookService.getBooksByIds(bookIds);
+  }
+  
 }
