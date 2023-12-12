@@ -3,7 +3,6 @@ export class  CreateBookDto {
     author: string;
     price: number;
 }
-
 export class UpdateBookDto {
     title?: string;
     author?: string;
