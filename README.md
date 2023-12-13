@@ -26,6 +26,11 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Datababe 
+
+[MySql](https://mysql.com) non-relational database
+[TypeOrm]- Prisma (https://prisma.com)
+
 ## Installation
 
 ```bash
