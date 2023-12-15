@@ -16,7 +16,7 @@ model Book {
   id         Int      @id @default(autoincrement())
   title      String
   author     String
-  price      Float
+  price      Int
   createdAt  DateTime @default(now())
   updated    DateTime  @updatedAt
 } 

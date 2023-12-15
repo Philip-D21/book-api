@@ -31,6 +31,17 @@
 [MySql](https://mysql.com) non-relational database
 [TypeOrm]- Prisma (https://prisma.com)
 
+## Deployed Url
+
+[render](https://book-api-9g7q.onrender.com/)
+
+## Postman Documentation 
+
+This is postman link will direct you to the documentation
+
+[Postman](https://documenter.getpostman.com/view/20202295/2s9YkkgPMi)
+
+
 ## Installation
 
 ```bash

@@ -14,7 +14,7 @@ import { GetBooksByIdsDto } from './dto/getBookById.dto';
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
-  // @Get()
+  // @Get('/all-books')
   // findAll(): Promise<Book[]> {
   //   return this.bookService.findAll();
   // }
@@ -44,7 +44,7 @@ export class BookController {
     return this.bookService.createMultiple(createMultipleBooksDto);
   }
 
-  @Get()
+ @Get()
  findAll(@Query() sortBooksDto: SortBooksDto): Promise<Book[]> {
     const { sortBy, sortOrder} = sortBooksDto
     return this.bookService.findAllSortedBy(sortBy, sortOrder);
@@ -63,3 +63,4 @@ export class BookController {
   }
   
 }
+

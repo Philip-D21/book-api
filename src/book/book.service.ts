@@ -93,11 +93,14 @@ export class BookService {
           },
         },
       });
+      console.log(books);
       return books.map((book) => book.title);
+     
     } catch (error) {
       throw new InternalServerErrorException(`Unable to fetch books by price: ${error.message}`);
     }
   }
+
 
   async getBooksByIds(bookIds: number[]): Promise<Book[]> {
     try {
@@ -112,4 +115,5 @@ export class BookService {
       throw new InternalServerErrorException(`Unable to fetch books by IDs: ${error.message}`);
     }
   }
+  
 }
